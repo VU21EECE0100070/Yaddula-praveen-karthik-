@@ -1,0 +1,28 @@
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+
+# Sample data: square footage, number of bedrooms, number of bathrooms, and prices
+X = np.array([[1000, 2, 1],
+              [1500, 3, 2],
+              [2000, 4, 2.5],
+              [1200, 2, 1.5],
+              [1800, 3, 2]])
+
+y = np.array([150000, 200000, 250000, 180000, 220000])
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create and fit the linear regression model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Predict house prices using the test set
+y_pred = model.predict(X_test)
+
+# Evaluate the model
+print("Predicted prices:", y_pred)
+print("Actual prices:", y_test)
+print("Model coefficients:", model.coef_)
+print("Model intercept:", model.intercept_)
